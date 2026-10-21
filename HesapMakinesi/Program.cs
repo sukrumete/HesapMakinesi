@@ -1,14 +1,14 @@
 ﻿
 Console.Write("Birinci Sayıyı giriniz: ");
-int birincisayi = int.Parse(Console.ReadLine());
+double birincisayi = double.Parse(Console.ReadLine());
 
 Console.Write("ikinci Sayıyı giriniz: ");
-int ikincisayi = int.Parse(Console.ReadLine());
+double ikincisayi = double.Parse(Console.ReadLine());
 
 Console.Write("İşlem türünü seçiniz (+, -, *, /): ");
 string islem = Console.ReadLine();
 
-int sonuc = 0;
+double sonuc = 0;
 bool hatavar = false;
 if (islem == "+")
 {
