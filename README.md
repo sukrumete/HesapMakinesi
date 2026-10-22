@@ -5,20 +5,29 @@ C# ile yazılmış basit bir konsol hesap makinesi. C# öğrenme sürecimdeki il
 ## Ne yapıyor?
 Kullanıcıdan iki sayı ve bir işlem (+, -, *, /) alır, sonucu ekrana yazar.
 - Ondalıklı sayılarla çalışır (7 / 2 = 3,5)
-- Sıfıra bölmeye çalışılırsa program çökmez, uyarı verir
-- Sayı yerine harf girilirse program çökmez, uyarı verir
-- Geçersiz işlem seçilirse uyarı verir
-
-```
-Birinci Sayıyı giriniz: 7
-ikinci Sayıyı giriniz: 2
-İşlem türünü seçiniz (+, -, *, /): /
-Sonuç: 3,5
-```
+- Program kapanmadan art arda hesap yapılabilir
+- Yanlış girişte program kapanmaz, kullanıcıdan tekrar ister:
+  - Sayı yerine harf girilirse
+  - Geçersiz işlem seçilirse
+  - Devam sorusuna E/H dışında bir şey yazılırsa
+- Sıfıra bölmeye çalışılırsa uyarı verir
 
 ```
 Birinci Sayıyı giriniz: abc
-Lütfen Geçerli Bir sayı Giriniz
+Lütfen geçerli bir sayı giriniz.
+Birinci Sayıyı giriniz: 7
+İkinci Sayıyı giriniz: 2
+İşlem türünü seçiniz (+, -, *, /): x
+Lütfen geçerli bir işlem türü giriniz.
+İşlem türünü seçiniz (+, -, *, /): /
+Sonuç: 3,5
+Devam etmek istiyor musunuz? (E/H): e
+Birinci Sayıyı giriniz: 10
+İkinci Sayıyı giriniz: 0
+İşlem türünü seçiniz (+, -, *, /): /
+Bir sayıyı 0'a bölemezsiniz.
+Devam etmek istiyor musunuz? (E/H): h
+Görüşmek üzere!
 ```
 
 ## Kullanılanlar
@@ -44,12 +53,24 @@ Lütfen Geçerli Bir sayı Giriniz
 - Harf girilince program çöküyordu (`FormatException`) → `try / catch` ile çözdüm
 - Kapsam (scope): `{ }` içinde oluşturulan değişken dışarıda kullanılamaz (CS0103 hatası aldım)
 
+**Versiyon 4**
+- Yanlış girişte program kapanıyordu → `while` döngüsü ile tekrar sordum
+- `try / catch` yerine `double.TryParse` kullandım (çökmeden `true` / `false` döner)
+- `TryParse` gelince `try / catch` gereksiz kaldı → kodu temizledim (refactoring)
+- Geçersiz işlem kontrolü döngüye taşındı → eski `else` bloğu gereksiz kaldı, sildim
+- `||` (veya) ile birden fazla koşulu kontrol etmek (`"H" || "h"`)
+- Bütün programı bir `while` döngüsüne alarak art arda hesap yapmak
+- Devam sorusuna "x" yazınca program devam ediyordu → testte fark ettim, E/H kontrolü ekledim
+- Kod silerken yanlışlıkla sonuç satırını da sildim → testte fark edip geri ekledim
+
 ## Sonraki adımlar
 - [x] İşlem seçimi (+, -, *, /)
 - [x] Sıfıra bölme kontrolü
 - [x] Hatalı girişleri yakalama (harf girilirse)
 - [x] Ondalıklı sayılar (7 / 2 = 3,5)
 - [x] Hata durumunda "Sonuç: 0" yazmaması
-- [ ] Hatalı girişte programı kapatmak yerine tekrar sormak
-- [ ] Program kapanmadan art arda hesap yapabilmek (döngü)
-- [ ] Kodu metotlara bölmek
+- [x] Hatalı girişte programı kapatmak yerine tekrar sormak
+- [x] Program kapanmadan art arda hesap yapabilmek (döngü)
+- [x] Devam sorusunda sadece E/H kabul etmek
+- [ ] Kodu metotlara bölmek (tekrar eden sayı sorma kodları gibi)
+- [ ] `if / else if` zincirini `switch` ile yazmak
