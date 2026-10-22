@@ -1,53 +1,66 @@
 ﻿
-try
+double birincisayi = 0;
+bool gecerli = false;
+while (gecerli == false)
 {
     Console.Write("Birinci Sayıyı giriniz: ");
-    double birincisayi = double.Parse(Console.ReadLine());
+    gecerli = double.TryParse(Console.ReadLine(), out birincisayi);
 
-    Console.Write("ikinci Sayıyı giriniz: ");
-    double ikincisayi = double.Parse(Console.ReadLine());
-
-    Console.Write("İşlem türünü seçiniz (+, -, *, /): ");
-    string islem = Console.ReadLine();
-
-    double sonuc = 0;
-    bool hatavar = false;
-    if (islem == "+")
+    if (gecerli == false)
     {
-        sonuc = birincisayi + ikincisayi;
+        Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
     }
-    else if (islem == "-")
-    {
-        sonuc = birincisayi - ikincisayi;
+}
 
-    }
-    else if (islem == "*")
+double ikincisayi = 0;
+gecerli = false;
+while (gecerli == false)
+{
+    Console.Write("İkinci Sayıyı giriniz: ");
+    gecerli = double.TryParse(Console.ReadLine(), out ikincisayi);
+
+    if (gecerli == false)
     {
-        sonuc = birincisayi * ikincisayi;
+        Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
     }
-    else if (islem == "/")
+}
+
+Console.Write("İşlem türünü seçiniz (+, -, *, /): ");
+string islem = Console.ReadLine();
+
+double sonuc = 0;
+bool hatavar = false;
+if (islem == "+")
+{
+    sonuc = birincisayi + ikincisayi;
+}
+else if (islem == "-")
+{
+    sonuc = birincisayi - ikincisayi;
+
+}
+else if (islem == "*")
+{
+    sonuc = birincisayi * ikincisayi;
+}
+else if (islem == "/")
+{
+    if (ikincisayi == 0)
     {
-        if (ikincisayi == 0)
-        {
-            Console.WriteLine("Bir sayıyı 0'a bölemezsiniz.");
-            hatavar = true;
-        }
-        else
-        {
-            sonuc = birincisayi / ikincisayi;
-        }
+        Console.WriteLine("Bir sayıyı 0'a bölemezsiniz.");
+        hatavar = true;
     }
     else
     {
-        Console.WriteLine("Geçersiz işlem türü.");
-        hatavar = true;
-    }
-    if (hatavar == false)
-    {
-        Console.WriteLine("Sonuç: " + sonuc);
+        sonuc = birincisayi / ikincisayi;
     }
 }
-catch (FormatException)
+else
 {
-    Console.WriteLine("Lütfen Geçerli Bir sayı Giriniz");
+    Console.WriteLine("Geçersiz işlem türü.");
+    hatavar = true;
+}
+if (hatavar == false)
+{
+    Console.WriteLine("Sonuç: " + sonuc);
 }
