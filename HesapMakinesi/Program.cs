@@ -1,4 +1,6 @@
 ﻿
+using System.Data;
+
 double birincisayi = 0;
 bool gecerli = false;
 while (gecerli == false)
@@ -25,8 +27,22 @@ while (gecerli == false)
     }
 }
 
-Console.Write("İşlem türünü seçiniz (+, -, *, /): ");
-string islem = Console.ReadLine();
+string islem = "";
+gecerli = false;
+while (gecerli == false)
+{
+    Console.Write("İşlem türünü seçiniz (+, -, *, /): ");
+    islem = Console.ReadLine();
+
+    if (islem == "+" || islem == "-" || islem == "*" || islem == "/")
+    {
+        gecerli = true;
+    }
+    else
+    {
+        Console.WriteLine("Lütfen geçerli bir işlem türü giriniz.");
+    }
+}
 
 double sonuc = 0;
 bool hatavar = false;
@@ -54,11 +70,6 @@ else if (islem == "/")
     {
         sonuc = birincisayi / ikincisayi;
     }
-}
-else
-{
-    Console.WriteLine("Geçersiz işlem türü.");
-    hatavar = true;
 }
 if (hatavar == false)
 {
