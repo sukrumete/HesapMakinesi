@@ -4,13 +4,21 @@ C# ile yazılmış basit bir konsol hesap makinesi. C# öğrenme sürecimdeki il
 
 ## Ne yapıyor?
 Kullanıcıdan iki sayı ve bir işlem (+, -, *, /) alır, sonucu ekrana yazar.
-Sıfıra bölmeye çalışılırsa program çökmez, uyarı verir.
+- Ondalıklı sayılarla çalışır (7 / 2 = 3,5)
+- Sıfıra bölmeye çalışılırsa program çökmez, uyarı verir
+- Sayı yerine harf girilirse program çökmez, uyarı verir
+- Geçersiz işlem seçilirse uyarı verir
 
 ```
-Birinci Sayıyı giriniz: 8
+Birinci Sayıyı giriniz: 7
 ikinci Sayıyı giriniz: 2
-İşlem türünü seçiniz (+, -, *, /): *
-Sonuç: 16
+İşlem türünü seçiniz (+, -, *, /): /
+Sonuç: 3,5
+```
+
+```
+Birinci Sayıyı giriniz: abc
+Lütfen Geçerli Bir sayı Giriniz
 ```
 
 ## Kullanılanlar
@@ -30,9 +38,18 @@ Sonuç: 16
 - İç içe `if` ile sıfıra bölme kontrolü
 - Kendi test senaryolarımı yazıp hataları bulmak
 
+**Versiyon 3**
+- 7 / 2 = 3 çıkıyordu (küsurat atılıyordu) → `int` yerine `double` kullandım
+- Hata olunca ekranda yanıltıcı "Sonuç: 0" çıkıyordu → `bool` flag ile çözdüm
+- Harf girilince program çöküyordu (`FormatException`) → `try / catch` ile çözdüm
+- Kapsam (scope): `{ }` içinde oluşturulan değişken dışarıda kullanılamaz (CS0103 hatası aldım)
+
 ## Sonraki adımlar
 - [x] İşlem seçimi (+, -, *, /)
 - [x] Sıfıra bölme kontrolü
-- [ ] Hatalı girişleri yakalama (harf girilirse)
-- [ ] Ondalıklı sayılar (7 / 2 = 3,5)
-- [ ] Hata durumunda "Sonuç: 0" yazmaması
+- [x] Hatalı girişleri yakalama (harf girilirse)
+- [x] Ondalıklı sayılar (7 / 2 = 3,5)
+- [x] Hata durumunda "Sonuç: 0" yazmaması
+- [ ] Hatalı girişte programı kapatmak yerine tekrar sormak
+- [ ] Program kapanmadan art arda hesap yapabilmek (döngü)
+- [ ] Kodu metotlara bölmek
