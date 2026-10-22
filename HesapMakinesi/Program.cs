@@ -1,77 +1,104 @@
-﻿
-using System.Data;
-
-double birincisayi = 0;
-bool gecerli = false;
-while (gecerli == false)
+﻿bool devam = true;
+while (devam)
 {
-    Console.Write("Birinci Sayıyı giriniz: ");
-    gecerli = double.TryParse(Console.ReadLine(), out birincisayi);
 
-    if (gecerli == false)
+
+
+    double birincisayi = 0;
+    bool gecerli = false;
+    while (gecerli == false)
     {
-        Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+        Console.Write("Birinci Sayıyı giriniz: ");
+        gecerli = double.TryParse(Console.ReadLine(), out birincisayi);
+
+        if (gecerli == false)
+        {
+            Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+        }
+    }
+
+    double ikincisayi = 0;
+    gecerli = false;
+    while (gecerli == false)
+    {
+        Console.Write("İkinci Sayıyı giriniz: ");
+        gecerli = double.TryParse(Console.ReadLine(), out ikincisayi);
+
+        if (gecerli == false)
+        {
+            Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+        }
+    }
+
+    string islem = "";
+    gecerli = false;
+    while (gecerli == false)
+    {
+        Console.Write("İşlem türünü seçiniz (+, -, *, /): ");
+        islem = Console.ReadLine();
+
+        if (islem == "+" || islem == "-" || islem == "*" || islem == "/")
+        {
+            gecerli = true;
+        }
+        else
+        {
+            Console.WriteLine("Lütfen geçerli bir işlem türü giriniz.");
+        }
+    }
+
+    double sonuc = 0;
+    bool hatavar = false;
+    if (islem == "+")
+    {
+        sonuc = birincisayi + ikincisayi;
+    }
+    else if (islem == "-")
+    {
+        sonuc = birincisayi - ikincisayi;
+
+    }
+    else if (islem == "*")
+    {
+        sonuc = birincisayi * ikincisayi;
+    }
+    else if (islem == "/")
+    {
+        if (ikincisayi == 0)
+        {
+            Console.WriteLine("Bir sayıyı 0'a bölemezsiniz.");
+            hatavar = true;
+        }
+        else
+        {
+            sonuc = birincisayi / ikincisayi;
+        }
+    }
+
+    if (hatavar == false)
+    {
+        Console.WriteLine("Sonuç: " + sonuc);
+    }
+
+    string cevap = "";                    
+    gecerli = false;                      
+    while (gecerli == false)              
+    {
+        Console.Write("Devam etmek istiyor musunuz? (E/H): ");
+        cevap = Console.ReadLine();       
+
+        if (cevap == "E" || cevap == "e" || cevap == "H" || cevap == "h")
+        {
+            gecerli = true;              
+        }
+        else
+        {
+            Console.WriteLine("Lütfen E ya da H giriniz.");
+        }
+    }
+    if (cevap == "H" || cevap == "h")    
+    {
+        devam = false;
     }
 }
-
-double ikincisayi = 0;
-gecerli = false;
-while (gecerli == false)
-{
-    Console.Write("İkinci Sayıyı giriniz: ");
-    gecerli = double.TryParse(Console.ReadLine(), out ikincisayi);
-
-    if (gecerli == false)
-    {
-        Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
-    }
-}
-
-string islem = "";
-gecerli = false;
-while (gecerli == false)
-{
-    Console.Write("İşlem türünü seçiniz (+, -, *, /): ");
-    islem = Console.ReadLine();
-
-    if (islem == "+" || islem == "-" || islem == "*" || islem == "/")
-    {
-        gecerli = true;
-    }
-    else
-    {
-        Console.WriteLine("Lütfen geçerli bir işlem türü giriniz.");
-    }
-}
-
-double sonuc = 0;
-bool hatavar = false;
-if (islem == "+")
-{
-    sonuc = birincisayi + ikincisayi;
-}
-else if (islem == "-")
-{
-    sonuc = birincisayi - ikincisayi;
-
-}
-else if (islem == "*")
-{
-    sonuc = birincisayi * ikincisayi;
-}
-else if (islem == "/")
-{
-    if (ikincisayi == 0)
-    {
-        Console.WriteLine("Bir sayıyı 0'a bölemezsiniz.");
-        hatavar = true;
-    }
-    else
-    {
-        sonuc = birincisayi / ikincisayi;
-    }
-}
-if (hatavar == false)
-{
-    Console.WriteLine("Sonuç: " + sonuc);
-}
+Console.WriteLine("Görüşmek üzere!");
