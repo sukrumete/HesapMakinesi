@@ -27,30 +27,28 @@ while (devam)
 
     double sonuc = 0;
     bool hatavar = false;
-    if (islem == "+")
+    switch (islem)
     {
-        sonuc = birincisayi + ikincisayi;
-    }
-    else if (islem == "-")
-    {
-        sonuc = birincisayi - ikincisayi;
-
-    }
-    else if (islem == "*")
-    {
-        sonuc = birincisayi * ikincisayi;
-    }
-    else if (islem == "/")
-    {
-        if (ikincisayi == 0)
-        {
-            Console.WriteLine("Bir sayıyı 0'a bölemezsiniz.");
-            hatavar = true;
-        }
-        else
-        {
-            sonuc = birincisayi / ikincisayi;
-        }
+        case "+":
+            sonuc = birincisayi + ikincisayi;
+            break;
+        case "-":
+            sonuc = birincisayi - ikincisayi;
+            break;
+        case "*":
+            sonuc = birincisayi * ikincisayi;
+            break;
+        case "/":
+            if (ikincisayi == 0)
+            {
+                Console.WriteLine("Bir Sayıyı 0'a Bölemezsiniz.");
+                hatavar = true;
+            }
+            else
+            {
+                sonuc = birincisayi / ikincisayi;
+            }
+            break;
     }
 
     if (hatavar == false)
