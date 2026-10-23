@@ -63,6 +63,13 @@ Görüşmek üzere!
 - Devam sorusuna "x" yazınca program devam ediyordu → testte fark ettim, E/H kontrolü ekledim
 - Kod silerken yanlışlıkla sonuç satırını da sildim → testte fark edip geri ekledim
 
+**Versiyon 5**
+- Birinci ve ikinci sayıyı alan kodlar neredeyse aynıydı (24 satır) → `SayiAl` metoduna taşıdım, artık 2 satır
+- İki blok arasındaki farkları buldum (ekrana yazılan mesaj ve sonucun gittiği değişken) → mesajı **parametre**, sayıyı **return** yaptım
+- En çok zorlandığım kısım: metot imzasındaki tür ve isim sırası (`double SayiAl(string mesaj)`) ve metodu **tanımlamak** ile **çağırmak** arasındaki fark
+- Blok silinince `bool gecerli` tanımı da gitti ve CS0103 hatası aldım → değişkeni kullanıldığı ilk yerde yeniden tanımladım
+- Refactoring sonrası bütün testleri tekrarladım, program eskisiyle aynı çalışıyor
+
 ## Sonraki adımlar
 - [x] İşlem seçimi (+, -, *, /)
 - [x] Sıfıra bölme kontrolü
@@ -72,5 +79,5 @@ Görüşmek üzere!
 - [x] Hatalı girişte programı kapatmak yerine tekrar sormak
 - [x] Program kapanmadan art arda hesap yapabilmek (döngü)
 - [x] Devam sorusunda sadece E/H kabul etmek
-- [ ] Kodu metotlara bölmek (tekrar eden sayı sorma kodları gibi)
+- [x] Kodu metotlara bölmek (tekrar eden sayı sorma kodları gibi)
 - [ ] `if / else if` zincirini `switch` ile yazmak
