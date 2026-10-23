@@ -4,34 +4,12 @@ while (devam)
 
 
 
-    double birincisayi = 0;
-    bool gecerli = false;
-    while (gecerli == false)
-    {
-        Console.Write("Birinci Sayıyı giriniz: ");
-        gecerli = double.TryParse(Console.ReadLine(), out birincisayi);
+    double birincisayi = SayiAl("Birinci Sayıyı giriniz: ");
 
-        if (gecerli == false)
-        {
-            Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
-        }
-    }
-
-    double ikincisayi = 0;
-    gecerli = false;
-    while (gecerli == false)
-    {
-        Console.Write("İkinci Sayıyı giriniz: ");
-        gecerli = double.TryParse(Console.ReadLine(), out ikincisayi);
-
-        if (gecerli == false)
-        {
-            Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
-        }
-    }
+    double ikincisayi = SayiAl("İkinci Sayıyı giriniz: ");
 
     string islem = "";
-    gecerli = false;
+    bool gecerli = false;
     while (gecerli == false)
     {
         Console.Write("İşlem türünü seçiniz (+, -, *, /): ");
@@ -80,25 +58,41 @@ while (devam)
         Console.WriteLine("Sonuç: " + sonuc);
     }
 
-    string cevap = "";                    
-    gecerli = false;                      
-    while (gecerli == false)              
+    string cevap = "";
+    gecerli = false;
+    while (gecerli == false)
     {
         Console.Write("Devam etmek istiyor musunuz? (E/H): ");
-        cevap = Console.ReadLine();       
+        cevap = Console.ReadLine();
 
         if (cevap == "E" || cevap == "e" || cevap == "H" || cevap == "h")
         {
-            gecerli = true;              
+            gecerli = true;
         }
         else
         {
             Console.WriteLine("Lütfen E ya da H giriniz.");
         }
     }
-    if (cevap == "H" || cevap == "h")    
+    if (cevap == "H" || cevap == "h")
     {
         devam = false;
     }
 }
 Console.WriteLine("Görüşmek üzere!");
+
+double SayiAl(string mesaj)
+{
+    double sayi = 0;
+    bool gecerli = false;
+    while (gecerli == false)
+    {
+        Console.Write(mesaj);
+        gecerli = double.TryParse(Console.ReadLine(), out sayi);
+        if (gecerli == false)
+        {
+            Console.WriteLine("Lütfen geçerli bir sayı giriniz.");
+        }
+    }
+    return sayi;
+}
