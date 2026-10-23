@@ -70,6 +70,13 @@ Görüşmek üzere!
 - Blok silinince `bool gecerli` tanımı da gitti ve CS0103 hatası aldım → değişkeni kullanıldığı ilk yerde yeniden tanımladım
 - Refactoring sonrası bütün testleri tekrarladım, program eskisiyle aynı çalışıyor
 
+**Versiyon 6**
+- `if / else if` zincirindeki tekrar eden `islem ==` kontrollerini `switch` ile daha düzenli yazdım
+- `switch (islem)` parantezine karşılaştırma değil, sadece değişken yazıldığını öğrendim
+- `case` sonunda iki nokta (`:`), `break` sonunda noktalı virgül (`;`) olduğunu karıştırdım → düzelttim
+- `case` içine `if / else` yazılabildiğini öğrendim (sıfıra bölme kontrolü)
+- Taşırken fazladan bir bölme satırı kalmıştı (kontrolden önce bölüyordu) → fark edip sildim
+
 ## Sonraki adımlar
 - [x] İşlem seçimi (+, -, *, /)
 - [x] Sıfıra bölme kontrolü
@@ -80,4 +87,4 @@ Görüşmek üzere!
 - [x] Program kapanmadan art arda hesap yapabilmek (döngü)
 - [x] Devam sorusunda sadece E/H kabul etmek
 - [x] Kodu metotlara bölmek (tekrar eden sayı sorma kodları gibi)
-- [ ] `if / else if` zincirini `switch` ile yazmak
+- [x] `if / else if` zincirini `switch`
