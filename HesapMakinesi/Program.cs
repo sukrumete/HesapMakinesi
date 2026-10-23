@@ -8,22 +8,7 @@ while (devam)
 
     double ikincisayi = SayiAl("İkinci Sayıyı giriniz: ");
 
-    string islem = "";
-    bool gecerli = false;
-    while (gecerli == false)
-    {
-        Console.Write("İşlem türünü seçiniz (+, -, *, /): ");
-        islem = Console.ReadLine();
-
-        if (islem == "+" || islem == "-" || islem == "*" || islem == "/")
-        {
-            gecerli = true;
-        }
-        else
-        {
-            Console.WriteLine("Lütfen geçerli bir işlem türü giriniz.");
-        }
-    }
+    string islem = IslemAl();
 
     double sonuc = 0;
     bool hatavar = false;
@@ -57,7 +42,7 @@ while (devam)
     }
 
     string cevap = "";
-    gecerli = false;
+    bool gecerli = false;
     while (gecerli == false)
     {
         Console.Write("Devam etmek istiyor musunuz? (E/H): ");
@@ -78,6 +63,26 @@ while (devam)
     }
 }
 Console.WriteLine("Görüşmek üzere!");
+
+string IslemAl()
+{
+    string islem = "";
+    bool gecerli = false;
+    while (gecerli == false)
+    {
+        Console.Write("İşlem türünü seçiniz (+, -, *, /): ");
+        islem = Console.ReadLine();
+        if (islem == "+" || islem == "-" || islem == "*" || islem == "/")
+        {
+            gecerli = true;
+        }
+        else
+        {
+            Console.WriteLine("Lütfen geçerli bir işlem türü giriniz.");
+        }
+    }
+    return islem;
+}
 
 double SayiAl(string mesaj)
 {
