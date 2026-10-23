@@ -41,7 +41,7 @@ while (devam)
         case "/":
             if (ikincisayi == 0)
             {
-                Console.WriteLine("Bir Sayıyı 0'a Bölemezsiniz.");
+                Console.WriteLine("Bir sayıyı 0'a bölemezsiniz.");
                 hatavar = true;
             }
             else
