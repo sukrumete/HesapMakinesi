@@ -34,6 +34,12 @@ Görüşmek üzere!
 - C#
 - .NET 10
 
+## Nasıl çalıştım?
+- Kodu kendim yazdım. Yapay zekâyı (Claude) bir öğretmen gibi kullandım: Önce kendim denedim, takıldığımda ipucu istedim, hatalarımın nedenini sordum.
+- Yapay zekâya kodu yazdırmak yerine, kavramları anlamak için kullandım. Takıldığım birkaç yerde çözüme yakın ipuçları aldım.
+- README metinlerini düzenlerken de yapay zekâdan destek aldım.
+- Her değişiklikten sonra programı kendim test ettim.
+
 ## Bu projede öğrendiklerim
 
 **Versiyon 1**
@@ -77,6 +83,15 @@ Görüşmek üzere!
 - `case` içine `if / else` yazılabildiğini öğrendim (sıfıra bölme kontrolü)
 - Taşırken fazladan bir bölme satırı kalmıştı (kontrolden önce bölüyordu) → fark edip sildim
 
+**Versiyon 7**
+- İşlem seçme kodunu `IslemAl()` metoduna taşıdım (parametresiz, `string` döndüren metot)
+- Devam sorusunu `DevamMi()` metoduna taşıdım (`bool` döndüren metot)
+- Metotlar V5'te zorlamıştı; bu sefer imzaları ve dönüş türlerini kendim kurdum, çok daha az yardım aldım
+- Metodu çağırırken tanımdaki parantez nasılsa öyle yazılır: `IslemAl()` boş, `SayiAl("...")` dolu
+- `bool` döndüren metodun cevabını doğrudan değişkene atadım: `devam = DevamMi();`
+- İlk denemede `return true;` satırını yanlış yere koydum, "h" yazınca da devam ediyordu → robot gibi adım adım düşünüp düzelttim
+- Blok silinince `bool gecerli` tanımı yine gitti → bu sefer sorunu kendim fark edip çözdüm
+
 ## Sonraki adımlar
 - [x] İşlem seçimi (+, -, *, /)
 - [x] Sıfıra bölme kontrolü
@@ -87,4 +102,9 @@ Görüşmek üzere!
 - [x] Program kapanmadan art arda hesap yapabilmek (döngü)
 - [x] Devam sorusunda sadece E/H kabul etmek
 - [x] Kodu metotlara bölmek (tekrar eden sayı sorma kodları gibi)
-- [x] `if / else if` zincirini `switch`
+- [x] `if / else if` zincirini `switch` ile yazmak
+- [x] İşlem seçme ve devam sorusunu metoda çevirmek (`IslemAl`, `DevamMi`)
+- [ ] Yapılan hesapların geçmişini tutmak (List)
+- [ ] Yeni işlemler: kalan (%) ve üs alma (^)
+- [ ] Hesap geçmişini dosyaya kaydetmek
+- [ ] Hesaplama kodlarını bir sınıfa taşımak (OOP)
