@@ -11,6 +11,7 @@ Kullanıcıdan iki sayı ve bir işlem (+, -, *, /) alır, sonucu ekrana yazar.
   - Geçersiz işlem seçilirse
   - Devam sorusuna E/H dışında bir şey yazılırsa
 - Sıfıra bölmeye çalışılırsa uyarı verir
+- Program kapanırken yapılan hesapların geçmişini gösterir
 
 ```
 Birinci Sayıyı giriniz: abc
@@ -27,6 +28,8 @@ Birinci Sayıyı giriniz: 10
 İşlem türünü seçiniz (+, -, *, /): /
 Bir sayıyı 0'a bölemezsiniz.
 Devam etmek istiyor musunuz? (E/H): h
+Hesap Geçmişi
+7 / 2 = 3,5
 Görüşmek üzere!
 ```
 
@@ -35,9 +38,9 @@ Görüşmek üzere!
 - .NET 10
 
 ## Nasıl çalıştım?
-- Kodu kendim yazdım. Yapay zekâyı (Claude) bir öğretmen gibi kullandım: Önce kendim denedim, takıldığımda ipucu istedim, hatalarımın nedenini sordum.
-- Yapay zekâya kodu yazdırmak yerine, kavramları anlamak için kullandım. Takıldığım birkaç yerde çözüme yakın ipuçları aldım.
-- README metinlerini düzenlerken de yapay zekâdan destek aldım.
+- Bu projeyi yapay zekâ (Claude) ile soru-cevap şeklinde ilerleyerek yaptım. Her adımda yapay zekâ bana sorular sordu, ipuçları verdi ve kavramları açıkladı.
+- Kod satırlarını kendim yazdım. Yapay zekâya kodu yazdırmak yerine, takıldığım yerde ipucu istedim ve hatalarımın nedenini sordum. Bazı yerlerde çözüme çok yakın ipuçları aldım.
+- Planı ve fikirleri birlikte oluşturduk. README metinlerini de yapay zekâ ile birlikte düzenledim.
 - Her değişiklikten sonra programı kendim test ettim.
 
 ## Bu projede öğrendiklerim
@@ -92,6 +95,14 @@ Görüşmek üzere!
 - İlk denemede `return true;` satırını yanlış yere koydum, "h" yazınca da devam ediyordu → robot gibi adım adım düşünüp düzelttim
 - Blok silinince `bool gecerli` tanımı yine gitti → bu sefer sorunu kendim fark edip çözdüm
 
+**Versiyon 8**
+- Yapılan hesapları saklamak için `List<string>` kullandım (kaç hesap yapılacağı belli olmadığı için boyutu değişebilen liste)
+- Listeyi döngünün **dışında** oluşturdum: içinde olsaydı her turda yeni, boş bir liste oluşur ve eski hesaplar kaybolurdu
+- `gecmis.Add(...)` ile sadece başarılı hesapları ekledim (sıfıra bölme gibi hatalar geçmişe girmiyor)
+- Sayıları metinle birleştirerek `"7 / 2 = 3,5"` gibi satırlar oluşturdum (sayı + metin = metin)
+- Program kapanırken `foreach` ile geçmişi ekrana yazdırdım
+- `foreach` içinde iki yerde farklı isim kullandım (`hesaplar` / `hesap`) → aynı isim olması gerektiğini öğrendim
+
 ## Sonraki adımlar
 - [x] İşlem seçimi (+, -, *, /)
 - [x] Sıfıra bölme kontrolü
@@ -104,7 +115,7 @@ Görüşmek üzere!
 - [x] Kodu metotlara bölmek (tekrar eden sayı sorma kodları gibi)
 - [x] `if / else if` zincirini `switch` ile yazmak
 - [x] İşlem seçme ve devam sorusunu metoda çevirmek (`IslemAl`, `DevamMi`)
-- [ ] Yapılan hesapların geçmişini tutmak (List)
+- [x] Yapılan hesapların geçmişini tutmak (List)
 - [ ] Yeni işlemler: kalan (%) ve üs alma (^)
 - [ ] Hesap geçmişini dosyaya kaydetmek
 - [ ] Hesaplama kodlarını bir sınıfa taşımak (OOP)
