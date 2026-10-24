@@ -3,14 +3,15 @@
 C# ile yazılmış basit bir konsol hesap makinesi. C# öğrenme sürecimdeki ilk projem.
 
 ## Ne yapıyor?
-Kullanıcıdan iki sayı ve bir işlem (+, -, *, /) alır, sonucu ekrana yazar.
+Kullanıcıdan iki sayı ve bir işlem (+, -, *, /, %, ^) alır, sonucu ekrana yazar.
+- Toplama, çıkarma, çarpma, bölme, kalan (%) ve üs alma (^) yapar
 - Ondalıklı sayılarla çalışır (7 / 2 = 3,5)
 - Program kapanmadan art arda hesap yapılabilir
 - Yanlış girişte program kapanmaz, kullanıcıdan tekrar ister:
   - Sayı yerine harf girilirse
   - Geçersiz işlem seçilirse
   - Devam sorusuna E/H dışında bir şey yazılırsa
-- Sıfıra bölmeye çalışılırsa uyarı verir
+- Sıfıra bölmeye ya da sıfıra göre kalan almaya çalışılırsa uyarı verir
 - Program kapanırken yapılan hesapların geçmişini gösterir
 
 ```
@@ -18,18 +19,24 @@ Birinci Sayıyı giriniz: abc
 Lütfen geçerli bir sayı giriniz.
 Birinci Sayıyı giriniz: 7
 İkinci Sayıyı giriniz: 2
-İşlem türünü seçiniz (+, -, *, /): x
+İşlem türünü seçiniz (+, -, *, /, %, ^): x
 Lütfen geçerli bir işlem türü giriniz.
-İşlem türünü seçiniz (+, -, *, /): /
+İşlem türünü seçiniz (+, -, *, /, %, ^): /
 Sonuç: 3,5
+Devam etmek istiyor musunuz? (E/H): e
+Birinci Sayıyı giriniz: 2
+İkinci Sayıyı giriniz: 3
+İşlem türünü seçiniz (+, -, *, /, %, ^): ^
+Sonuç: 8
 Devam etmek istiyor musunuz? (E/H): e
 Birinci Sayıyı giriniz: 10
 İkinci Sayıyı giriniz: 0
-İşlem türünü seçiniz (+, -, *, /): /
+İşlem türünü seçiniz (+, -, *, /, %, ^): /
 Bir sayıyı 0'a bölemezsiniz.
 Devam etmek istiyor musunuz? (E/H): h
 Hesap Geçmişi
 7 / 2 = 3,5
+2 ^ 3 = 8
 Görüşmek üzere!
 ```
 
@@ -73,35 +80,42 @@ Görüşmek üzere!
 - Kod silerken yanlışlıkla sonuç satırını da sildim → testte fark edip geri ekledim
 
 **Versiyon 5**
-- Birinci ve ikinci sayıyı alan kodlar neredeyse aynıydı (24 satır) → `SayiAl` metoduna taşıdım, artık 2 satır
-- İki blok arasındaki farkları buldum (ekrana yazılan mesaj ve sonucun gittiği değişken) → mesajı **parametre**, sayıyı **return** yaptım
-- En çok zorlandığım kısım: metot imzasındaki tür ve isim sırası (`double SayiAl(string mesaj)`) ve metodu **tanımlamak** ile **çağırmak** arasındaki fark
+- Birinci ve ikinci sayıyı alan kodlar neredeyse aynıydı (24 satır) → bunu ve iki blok arasındaki farkları (ekrana yazılan mesaj ve sonucun gittiği değişken) kendim buldum
+- Bu blokları `SayiAl` metoduna taşıdım: mesajı **parametre**, sayıyı **return** yaptım, artık 2 satır
+- En çok zorlandığım kısım: metot imzasındaki tür ve isim sırası (`double SayiAl(string mesaj)`) ve metodu **tanımlamak** ile **çağırmak** arasındaki fark. Yapay zekâ adım adım sorularla anlattı, çağırma satırını da gösterdi
 - Blok silinince `bool gecerli` tanımı da gitti ve CS0103 hatası aldım → değişkeni kullanıldığı ilk yerde yeniden tanımladım
 - Refactoring sonrası bütün testleri tekrarladım, program eskisiyle aynı çalışıyor
 
 **Versiyon 6**
 - `if / else if` zincirindeki tekrar eden `islem ==` kontrollerini `switch` ile daha düzenli yazdım
-- `switch (islem)` parantezine karşılaştırma değil, sadece değişken yazıldığını öğrendim
-- `case` sonunda iki nokta (`:`), `break` sonunda noktalı virgül (`;`) olduğunu karıştırdım → düzelttim
+- `switch` parantezine karşılaştırma yazmıştım (`switch (islem == "+")`) → yapay zekâ sadece değişken yazıldığını gösterdi
+- `case` sonunda iki nokta (`:`), `break` sonunda noktalı virgül (`;`) olduğunu karıştırdım → yapay zekâ fark ettirdi, düzelttim
 - `case` içine `if / else` yazılabildiğini öğrendim (sıfıra bölme kontrolü)
-- Taşırken fazladan bir bölme satırı kalmıştı (kontrolden önce bölüyordu) → fark edip sildim
+- Taşırken fazladan bir bölme satırı kalmıştı (kontrolden önce bölüyordu) → yapay zekâ gösterdi, sildim
 
 **Versiyon 7**
 - İşlem seçme kodunu `IslemAl()` metoduna taşıdım (parametresiz, `string` döndüren metot)
 - Devam sorusunu `DevamMi()` metoduna taşıdım (`bool` döndüren metot)
-- Metotlar V5'te zorlamıştı; bu sefer imzaları ve dönüş türlerini kendim kurdum, çok daha az yardım aldım
+- Metotlar V5'te zorlamıştı; bu sefer dönüş türlerini (`string`, `bool`) kendim buldum ve çok daha az yardım aldım
 - Metodu çağırırken tanımdaki parantez nasılsa öyle yazılır: `IslemAl()` boş, `SayiAl("...")` dolu
-- `bool` döndüren metodun cevabını doğrudan değişkene atadım: `devam = DevamMi();`
-- İlk denemede `return true;` satırını yanlış yere koydum, "h" yazınca da devam ediyordu → robot gibi adım adım düşünüp düzelttim
+- İlk denemede `return true;` satırını yanlış yere koydum, "h" yazınca da devam ediyordu → yapay zekâ robot gibi adım adım takip etmeyi gösterdi, düzelttim
+- `bool` döndüren metodun cevabını değişkene atamayı (`devam = DevamMi();`) yapay zekâdan öğrendim
 - Blok silinince `bool gecerli` tanımı yine gitti → bu sefer sorunu kendim fark edip çözdüm
 
 **Versiyon 8**
 - Yapılan hesapları saklamak için `List<string>` kullandım (kaç hesap yapılacağı belli olmadığı için boyutu değişebilen liste)
-- Listeyi döngünün **dışında** oluşturdum: içinde olsaydı her turda yeni, boş bir liste oluşur ve eski hesaplar kaybolurdu
-- `gecmis.Add(...)` ile sadece başarılı hesapları ekledim (sıfıra bölme gibi hatalar geçmişe girmiyor)
+- Listeyi döngünün **içinde** oluşturmayı düşünmüştüm → yapay zekâ her turda yeni, boş liste oluşacağını ve eski hesapların kaybolacağını açıkladı, **dışında** oluşturdum
+- `gecmis.Add(...)` satırının yerini kendim buldum: sadece başarılı hesaplar ekleniyor (sıfıra bölme gibi hatalar geçmişe girmiyor)
 - Sayıları metinle birleştirerek `"7 / 2 = 3,5"` gibi satırlar oluşturdum (sayı + metin = metin)
 - Program kapanırken `foreach` ile geçmişi ekrana yazdırdım
-- `foreach` içinde iki yerde farklı isim kullandım (`hesaplar` / `hesap`) → aynı isim olması gerektiğini öğrendim
+- `foreach` içinde iki yerde farklı isim kullanmıştım (`hesaplar` / `hesap`) → yapay zekâ fark ettirdi, aynı isim olması gerektiğini öğrendim
+
+**Versiyon 9**
+- Yeni işlem eklemek için kodda değiştirilmesi gereken yerleri düşündüm: ekrandaki mesajı ve işlem kontrolünü (`IslemAl` içinde) kendim buldum, hesaplamanın `switch` içinde yapıldığını yapay zekâ hatırlattı
+- Kalan (`%`) için de sıfır kontrolü ekledim (aksi halde sonuç `NaN`, yani "sayı değil" çıkıyordu)
+- C#'ta `^` işaretinin üs almak olmadığını bilmiyordum. Yapay zekâ bana `Math.Pow(taban, üs)` metodunu gösterdi, nasıl kullanıldığını öğrenip uyguladım
+- İlk denemede `Math.Pow`'u `+` gibi iki sayının arasına yazdım → yapay zekâ metotların parantez ve virgülle çağrıldığını hatırlattı
+- Kontrol satırında `==` yerine `=` yazmışım → yapay zekâ fark ettirdi. V2'de öğrendiğim atama (`=`) ile karşılaştırma (`==`) farkını tekrar karıştırdığımı gördüm
 
 ## Sonraki adımlar
 - [x] İşlem seçimi (+, -, *, /)
@@ -116,6 +130,6 @@ Görüşmek üzere!
 - [x] `if / else if` zincirini `switch` ile yazmak
 - [x] İşlem seçme ve devam sorusunu metoda çevirmek (`IslemAl`, `DevamMi`)
 - [x] Yapılan hesapların geçmişini tutmak (List)
-- [ ] Yeni işlemler: kalan (%) ve üs alma (^)
+- [x] Yeni işlemler: kalan (%) ve üs alma (^)
 - [ ] Hesap geçmişini dosyaya kaydetmek
 - [ ] Hesaplama kodlarını bir sınıfa taşımak (OOP)
