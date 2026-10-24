@@ -36,6 +36,20 @@ while (devam)
                 sonuc = birincisayi / ikincisayi;
             }
             break;
+        case "%":
+            if (ikincisayi == 0)
+            {
+                Console.WriteLine("Bir sayıyı 0'a bölemezsiniz.");
+                hatavar = true;
+            }
+            else
+            {
+                sonuc = birincisayi % ikincisayi;
+            }
+            break;
+        case "^":
+            sonuc = Math.Pow(birincisayi, ikincisayi);
+            break;
     }
 
     if (hatavar == false)
@@ -61,9 +75,9 @@ string IslemAl()
     bool gecerli = false;
     while (gecerli == false)
     {
-        Console.Write("İşlem türünü seçiniz (+, -, *, /): ");
+        Console.Write("İşlem türünü seçiniz (+, -, *, /, %, ^): ");
         islem = Console.ReadLine();
-        if (islem == "+" || islem == "-" || islem == "*" || islem == "/")
+        if (islem == "+" || islem == "-" || islem == "*" || islem == "/" || islem == "%" || islem == "^")
         {
             gecerli = true;
         }
