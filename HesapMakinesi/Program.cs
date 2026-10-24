@@ -1,4 +1,6 @@
-﻿bool devam = true;
+﻿List<string> gecmis = new List<string>();
+
+bool devam = true;
 while (devam)
 {
 
@@ -39,10 +41,18 @@ while (devam)
     if (hatavar == false)
     {
         Console.WriteLine("Sonuç: " + sonuc);
+        gecmis.Add(birincisayi + " " + islem + " " + ikincisayi + " = " + sonuc);
     }
 
     devam = DevamMi();
 }
+
+Console.WriteLine("Hesap Geçmişi");
+foreach (string islem in gecmis)
+{
+    Console.WriteLine(islem);
+}
+
 Console.WriteLine("Görüşmek üzere!");
 
 string IslemAl()
