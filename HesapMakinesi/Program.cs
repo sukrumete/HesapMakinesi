@@ -41,26 +41,7 @@ while (devam)
         Console.WriteLine("Sonuç: " + sonuc);
     }
 
-    string cevap = "";
-    bool gecerli = false;
-    while (gecerli == false)
-    {
-        Console.Write("Devam etmek istiyor musunuz? (E/H): ");
-        cevap = Console.ReadLine();
-
-        if (cevap == "E" || cevap == "e" || cevap == "H" || cevap == "h")
-        {
-            gecerli = true;
-        }
-        else
-        {
-            Console.WriteLine("Lütfen E ya da H giriniz.");
-        }
-    }
-    if (cevap == "H" || cevap == "h")
-    {
-        devam = false;
-    }
+    devam = DevamMi();
 }
 Console.WriteLine("Görüşmek üzere!");
 
@@ -98,4 +79,33 @@ double SayiAl(string mesaj)
         }
     }
     return sayi;
+}
+
+bool DevamMi()
+{
+    string cevap = "";
+    bool gecerli = false;
+    while (gecerli == false)
+    {
+        Console.Write("Devam etmek istiyor musunuz? (E/H): ");
+        cevap = Console.ReadLine();
+
+        if (cevap == "E" || cevap == "e" || cevap == "H" || cevap == "h")
+        {
+            gecerli = true;
+        }
+        else
+        {
+            Console.WriteLine("Lütfen E ya da H giriniz.");
+        }
+    }
+
+    if (cevap == "H" || cevap == "h")
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
