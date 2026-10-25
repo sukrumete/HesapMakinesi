@@ -13,6 +13,7 @@ Kullanıcıdan iki sayı ve bir işlem (+, -, *, /, %, ^) alır, sonucu ekrana y
   - Devam sorusuna E/H dışında bir şey yazılırsa
 - Sıfıra bölmeye ya da sıfıra göre kalan almaya çalışılırsa uyarı verir
 - Program kapanırken yapılan hesapların geçmişini gösterir
+- Hesap geçmişi bir dosyaya (`gecmis.txt`) kaydedilir; program kapatılıp açılsa bile eski hesaplar görünür
 
 ```
 Birinci Sayıyı giriniz: abc
@@ -117,6 +118,14 @@ Görüşmek üzere!
 - İlk denemede `Math.Pow`'u `+` gibi iki sayının arasına yazdım → yapay zekâ metotların parantez ve virgülle çağrıldığını hatırlattı
 - Kontrol satırında `==` yerine `=` yazmışım → yapay zekâ fark ettirdi. V2'de öğrendiğim atama (`=`) ile karşılaştırma (`==`) farkını tekrar karıştırdığımı gördüm
 
+**Versiyon 10**
+- Program kapanınca listenin silindiğini, çünkü geçici hafızada durduğunu öğrendim → hesapları kalıcı olarak bir dosyaya kaydettim
+- Yapay zekâ `File.AppendAllText` (dosyanın sonuna ekleme) metodunu anlattı; dosyaya yazma satırının yerini kendim buldum: `gecmis.Add` satırının hemen altı (böylece sadece başarılı hesaplar kaydediliyor)
+- Her hesabın ayrı satıra yazılması için `"\n"` ekledim; ilk denemede `\n`'i tırnaksız yazmıştım → yapay zekâ metin olarak eklenmesi gerektiğini gösterdi
+- Program açılırken eski hesapları okumak için yapay zekâdan `File.Exists` ve `File.ReadAllLines` metotlarını öğrendim
+- Okuma kodunun yerini kendim buldum: liste oluşturulduktan sonra, döngüden önce (döngünün içinde olsaydı aynı hesaplar tekrar tekrar eklenirdi)
+- Hesapları yine `gecmis` yerine `devam` listesine eklemeye çalıştım ve değişken adına boşluk koydum → yapay zekâ fark ettirdi, düzelttim
+
 ## Sonraki adımlar
 - [x] İşlem seçimi (+, -, *, /)
 - [x] Sıfıra bölme kontrolü
@@ -131,5 +140,5 @@ Görüşmek üzere!
 - [x] İşlem seçme ve devam sorusunu metoda çevirmek (`IslemAl`, `DevamMi`)
 - [x] Yapılan hesapların geçmişini tutmak (List)
 - [x] Yeni işlemler: kalan (%) ve üs alma (^)
-- [ ] Hesap geçmişini dosyaya kaydetmek
+- [x] Hesap geçmişini dosyaya kaydetmek
 - [ ] Hesaplama kodlarını bir sınıfa taşımak (OOP)
