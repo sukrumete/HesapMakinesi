@@ -1,5 +1,13 @@
 ﻿List<string> gecmis = new List<string>();
 
+if (File.Exists("gecmis.txt"))
+{
+    string[] eskiHesaplar = File.ReadAllLines("gecmis.txt");
+    foreach (string hesap in eskiHesaplar)
+    {
+        gecmis.Add(hesap);
+    }
+}
 bool devam = true;
 while (devam)
 {
@@ -56,6 +64,7 @@ while (devam)
     {
         Console.WriteLine("Sonuç: " + sonuc);
         gecmis.Add(birincisayi + " " + islem + " " + ikincisayi + " = " + sonuc);
+        File.AppendAllText("gecmis.txt", birincisayi + " " + islem + " " + ikincisayi + " = " + sonuc + "\n");
     }
 
     devam = DevamMi();
