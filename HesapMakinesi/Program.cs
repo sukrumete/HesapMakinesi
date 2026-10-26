@@ -22,43 +22,16 @@ while (devam)
 
     double sonuc = 0;
     bool hatavar = false;
-    switch (islem)
+    if ((islem == "/" || islem == "%") && ikincisayi == 0)
     {
-        case "+":
-            sonuc = birincisayi + ikincisayi;
-            break;
-        case "-":
-            sonuc = birincisayi - ikincisayi;
-            break;
-        case "*":
-            sonuc = birincisayi * ikincisayi;
-            break;
-        case "/":
-            if (ikincisayi == 0)
-            {
-                Console.WriteLine("Bir sayıyı 0'a bölemezsiniz.");
-                hatavar = true;
-            }
-            else
-            {
-                sonuc = birincisayi / ikincisayi;
-            }
-            break;
-        case "%":
-            if (ikincisayi == 0)
-            {
-                Console.WriteLine("Bir sayıyı 0'a bölemezsiniz.");
-                hatavar = true;
-            }
-            else
-            {
-                sonuc = birincisayi % ikincisayi;
-            }
-            break;
-        case "^":
-            sonuc = Math.Pow(birincisayi, ikincisayi);
-            break;
+        Console.WriteLine("Bir sayıyı 0'a bölemezsiniz.");
+        hatavar = true;
     }
+    else
+    {
+        sonuc = Hesapla(birincisayi, ikincisayi, islem);
+    }
+
 
     if (hatavar == false)
     {
@@ -71,9 +44,9 @@ while (devam)
 }
 
 Console.WriteLine("Hesap Geçmişi");
-foreach (string islem in gecmis)
+foreach (string hesap in gecmis)
 {
-    Console.WriteLine(islem);
+    Console.WriteLine(hesap);
 }
 
 Console.WriteLine("Görüşmek üzere!");
@@ -141,4 +114,31 @@ bool DevamMi()
     {
         return true;
     }
+}
+
+double Hesapla(double birincisayi, double ikincisayi, string islem)
+{
+    double sonuc = 0;
+    switch (islem)
+    {
+        case "+":
+            sonuc = birincisayi + ikincisayi;
+            break;
+        case "-":
+            sonuc = birincisayi - ikincisayi;
+            break;
+        case "*":
+            sonuc = birincisayi * ikincisayi;
+            break;
+        case "/":
+                sonuc = birincisayi / ikincisayi;
+            break;
+        case "%":
+                sonuc = birincisayi % ikincisayi;
+            break;
+        case "^":
+            sonuc = Math.Pow(birincisayi, ikincisayi);
+            break;
+    }
+    return sonuc;
 }
