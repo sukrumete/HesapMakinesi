@@ -8,6 +8,9 @@ if (File.Exists("gecmis.txt"))
         gecmis.Add(hesap);
     }
 }
+
+
+HesapMakinesi makine = new HesapMakinesi();
 bool devam = true;
 while (devam)
 {
@@ -29,7 +32,7 @@ while (devam)
     }
     else
     {
-        sonuc = Hesapla(birincisayi, ikincisayi, islem);
+        sonuc = makine.Hesapla(birincisayi, ikincisayi, islem);
     }
 
 
@@ -116,29 +119,34 @@ bool DevamMi()
     }
 }
 
-double Hesapla(double birincisayi, double ikincisayi, string islem)
+
+
+class HesapMakinesi
 {
-    double sonuc = 0;
-    switch (islem)
+public double Hesapla(double birincisayi, double ikincisayi, string islem)
     {
-        case "+":
-            sonuc = birincisayi + ikincisayi;
-            break;
-        case "-":
-            sonuc = birincisayi - ikincisayi;
-            break;
-        case "*":
-            sonuc = birincisayi * ikincisayi;
-            break;
-        case "/":
+        double sonuc = 0;
+        switch (islem)
+        {
+            case "+":
+                sonuc = birincisayi + ikincisayi;
+                break;
+            case "-":
+                sonuc = birincisayi - ikincisayi;
+                break;
+            case "*":
+                sonuc = birincisayi * ikincisayi;
+                break;
+            case "/":
                 sonuc = birincisayi / ikincisayi;
-            break;
-        case "%":
+                break;
+            case "%":
                 sonuc = birincisayi % ikincisayi;
-            break;
-        case "^":
-            sonuc = Math.Pow(birincisayi, ikincisayi);
-            break;
+                break;
+            case "^":
+                sonuc = Math.Pow(birincisayi, ikincisayi);
+                break;
+        }
+        return sonuc;
     }
-    return sonuc;
 }
