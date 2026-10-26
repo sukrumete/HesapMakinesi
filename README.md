@@ -126,6 +126,19 @@ Görüşmek üzere!
 - Okuma kodunun yerini kendim buldum: liste oluşturulduktan sonra, döngüden önce (döngünün içinde olsaydı aynı hesaplar tekrar tekrar eklenirdi)
 - Hesapları yine `gecmis` yerine `devam` listesine eklemeye çalıştım ve değişken adına boşluk koydum → yapay zekâ fark ettirdi, düzelttim
 
+**Versiyon 11 (OOP'ye giriş)**
+- Sınıf (kalıp), nesne (kalıptan çıkan şey) ve metot (nesnenin yaptığı iş) farkını yapay zekâ benzetmelerle anlattı (kurabiye kalıbı, telefon modeli). Bir Araba sınıfının özelliklerini ve metotlarını kendim düşünerek kavramı oturttum
+- Hesap makinesinin asıl işinin "hesaplamak", aklında tuttuğu şeyin de "geçmiş" olduğunu yapay zekânın sorularıyla buldum
+- `Hesapla` metodunun girişlerini (iki sayı ve işlem) ve çıkışını (sonuç) kendim buldum, imza satırını yazdım: `double Hesapla(double birincisayi, double ikincisayi, string islem)`
+- İlk denemede `double sonuc = new sonuc` ve `return hesapla;` yazdım → yapay zekâ `new`'in sadece nesne oluştururken kullanıldığını ve metodun adını değil kutunun içindekini döndürmem gerektiğini gösterdi
+- `switch`'i `Hesapla` metoduna taşıdım. Metodun içinde `hatavar` kırmızı çizgi verdi (metot dışarıdaki değişkeni göremiyor) → yapay zekâ açıkladı. Metot sadece hesaplasın diye sıfır kontrolünü ana programa aldım
+- Sıfır kontrolünün koşulunu önce Türkçe cümle olarak kendim kurdum ("işlem / veya % ise VE ikinci sayı 0 ise"), sonra `&&` (ve) ile C#'a çevirdim
+- İlk denemede yine `==` yerine `=` yazdım, gereksiz bir `birincisayi == 0` kontrolü ekledim ve `%`'yi unuttum → yapay zekâ boşluk doldurma şeklinde bir kalıp verdi, ben doldurdum. `if / else` bloğunun son birleştirilmiş halini de yapay zekâ gösterdi
+- Kendi ilk sınıfımı yazdım (`class HesapMakinesi`) ve `Hesapla`'yı içine taşıdım. Ana programın metodu kullanabilmesi için `public` gerektiğini yapay zekâdan öğrendim
+- Sınıftan nesne oluşturmak için `List` satırını örnek aldım: `HesapMakinesi makine = new HesapMakinesi();` İlk denemelerde `new` kelimesini unuttum → yapay zekâ fark ettirdi. Nesneyi döngünün dışına koymam gerektiğini kendim buldum (her hesapta yeni makine üretmek gereksiz)
+- Metodu nesne üzerinden çağırdım: `makine.Hesapla(...)` (`gecmis.Add(...)` ile aynı mantık)
+- İstenmeyen girişlerle de (harf, geçersiz işlem) ekstra testler yaptım
+
 ## Sonraki adımlar
 - [x] İşlem seçimi (+, -, *, /)
 - [x] Sıfıra bölme kontrolü
@@ -141,4 +154,7 @@ Görüşmek üzere!
 - [x] Yapılan hesapların geçmişini tutmak (List)
 - [x] Yeni işlemler: kalan (%) ve üs alma (^)
 - [x] Hesap geçmişini dosyaya kaydetmek
-- [ ] Hesaplama kodlarını bir sınıfa taşımak (OOP)
+- [x] Hesaplama kodlarını bir sınıfa taşımak (OOP)
+- [ ] Hesap geçmişini ve dosya işlemlerini de sınıfın içine taşımak
+- [ ] Sınıfı ayrı bir dosyaya taşımak (`HesapMakinesi.cs`)
+- [ ] Hesap geçmişini bir veritabanına (SQL) kaydetmek
