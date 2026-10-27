@@ -152,6 +152,14 @@ Görüşmek üzere!
 - Visual Studio'nun hazır sınıf kalıbındaki `namespace HesapMakinesi`, sınıfla aynı isimde olduğu için çakışma yaratacaktı → yapay zekânın önerisiyle kalıbı silip boş dosyaya taşıdım
 - İlk denemede sınıfı kesmek yerine kopyaladım, iki dosyada aynı metotlar oldu ve CS0121 ("belirsiz çağrı") hatası aldım → hata mesajındaki dosya ve satır numaralarına bakarak sınıfın Program.cs'te de kaldığını gördüm, sildim
 
+**Ek geliştirmeler**
+- Uzun ondalıklı sonuçları `Math.Round(sonuc, 2)` ile 2 basamağa yuvarladım (`0,6666...` → `0,67`). İlk denemelerde basamak sayısını yazmayı unuttum ve `000` yazdım → yapay zekâ ikinci değerin basamak **sayısı** olduğunu açıkladı
+- Geçmiş boşsa `Count == 0` ile "Henüz bir işlem yapılmadı." mesajı gösterdim. Yapay zekâ `if / else` yapısını gösterdi, karşılaştırma için `==` kullanmam gerektiğini kendim buldum
+- Program kapanırken geçmişi silme seçeneği ekledim: sınıfa `GecmisiTemizle()` metodu yazdım (`Clear()` ve `File.Delete`). İlk denemede liste yerine sınıfın adını kullandım ve tırnakları unuttum → yapay zekâ fark ettirdi
+- Aynı E/H sorusunu iki farklı yerde kullanabilmek için `DevamMi` metoduna parametre ekledim: `DevamMi(string soru)`. Bu fikri yapay zekâ önerdi, `SayiAl(string mesaj)` ile aynı mantık olduğunu görünce anladım
+- `Console.ReadLine()` satırlarındaki null uyarılarını (`CS8600`) `?? ""` ile giderdim. `??` operatörünü yapay zekâdan öğrendim
+- Boş geçmişi test etmek için dosyanın adını geçici olarak değiştirdim, silme özelliğini de "evet" ve "hayır" cevaplarıyla ayrı ayrı test ettim
+
 ## Sonraki adımlar
 - [x] İşlem seçimi (+, -, *, /)
 - [x] Sıfıra bölme kontrolü
