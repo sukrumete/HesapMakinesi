@@ -33,7 +33,7 @@ while (devam)
         makine.GecmiseEkle(birincisayi + " " + islem + " " + ikincisayi + " = " + sonuc);
     }
 
-    devam = DevamMi();
+    devam = DevamMi("Devam etmek istiyor musunuz? (E/H): ");
 }
 
 Console.WriteLine("Hesap Geçmişi");
@@ -46,6 +46,11 @@ else
     foreach (string hesap in makine.Gecmis)
     {
         Console.WriteLine(hesap);
+    }
+    if (DevamMi("Geçmişi temizlemek istiyor musunuz? (E/H): "))
+    {
+        makine.GecmisiTemizle();
+        Console.Write("Geçmiş temizlendi.");
     }
 }
 
@@ -87,13 +92,13 @@ double SayiAl(string mesaj)
     return sayi;
 }
 
-bool DevamMi()
+bool DevamMi(string soru)
 {
     string cevap = "";
     bool gecerli = false;
     while (gecerli == false)
     {
-        Console.Write("Devam etmek istiyor musunuz? (E/H): ");
+        Console.Write(soru);
         cevap = Console.ReadLine();
 
         if (cevap == "E" || cevap == "e" || cevap == "H" || cevap == "h")

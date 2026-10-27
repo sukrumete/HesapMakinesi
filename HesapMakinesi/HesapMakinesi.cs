@@ -23,6 +23,12 @@
         File.AppendAllText("gecmis.txt", hesap + "\n");
     }
 
+    public void GecmisiTemizle()
+    {
+        Gecmis.Clear();
+        File.Delete("gecmis.txt");
+    }
+
     public double Hesapla(double birincisayi, double ikincisayi, string islem)
     {
         double sonuc = 0;
