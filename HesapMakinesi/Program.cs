@@ -37,9 +37,16 @@ while (devam)
 }
 
 Console.WriteLine("Hesap Geçmişi");
-foreach (string hesap in makine.Gecmis)
+if (makine.Gecmis.Count == 0)
 {
-    Console.WriteLine(hesap);
+    Console.WriteLine("Henüz bir işlem yapılmadı.");
+}
+else
+{
+    foreach (string hesap in makine.Gecmis)
+    {
+        Console.WriteLine(hesap);
+    }
 }
 
 Console.WriteLine("Görüşmek üzere!");
