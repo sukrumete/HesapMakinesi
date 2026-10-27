@@ -63,7 +63,7 @@ string IslemAl()
     while (gecerli == false)
     {
         Console.Write("İşlem türünü seçiniz (+, -, *, /, %, ^): ");
-        islem = Console.ReadLine();
+        islem = Console.ReadLine() ?? "";
         if (islem == "+" || islem == "-" || islem == "*" || islem == "/" || islem == "%" || islem == "^")
         {
             gecerli = true;
@@ -99,7 +99,7 @@ bool DevamMi(string soru)
     while (gecerli == false)
     {
         Console.Write(soru);
-        cevap = Console.ReadLine();
+        cevap = Console.ReadLine() ?? "";
 
         if (cevap == "E" || cevap == "e" || cevap == "H" || cevap == "h")
         {
