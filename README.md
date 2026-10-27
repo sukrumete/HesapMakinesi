@@ -147,6 +147,11 @@ Görüşmek üzere!
 - Bu versiyonda yapay zekâ çok daha fazla yönlendirme yaptı: her adımda neyi silip neyi ekleyeceğimi madde madde anlattı. Yapay zekâ bir ara kodun tamamını da verdi ama anlamadığım kodu kullanmak istemediğim için yapıştırmadım; adım adım kendim yazdım
 - OOP benim için en zor konulardan biri oldu, tekrar ederek oturtmaya devam edeceğim
 
+**Versiyon 13**
+- `HesapMakinesi` sınıfını kendi dosyasına (`HesapMakinesi.cs`) taşıdım. `Program.cs`'te sadece ana program kaldı
+- Visual Studio'nun hazır sınıf kalıbındaki `namespace HesapMakinesi`, sınıfla aynı isimde olduğu için çakışma yaratacaktı → yapay zekânın önerisiyle kalıbı silip boş dosyaya taşıdım
+- İlk denemede sınıfı kesmek yerine kopyaladım, iki dosyada aynı metotlar oldu ve CS0121 ("belirsiz çağrı") hatası aldım → hata mesajındaki dosya ve satır numaralarına bakarak sınıfın Program.cs'te de kaldığını gördüm, sildim
+
 ## Sonraki adımlar
 - [x] İşlem seçimi (+, -, *, /)
 - [x] Sıfıra bölme kontrolü
@@ -164,4 +169,4 @@ Görüşmek üzere!
 - [x] Hesap geçmişini dosyaya kaydetmek
 - [x] Hesaplama kodlarını bir sınıfa taşımak (OOP)
 - [x] Hesap geçmişini ve dosya işlemlerini de sınıfın içine taşımak
-- [ ] Sınıfı ayrı bir dosyaya taşımak (`HesapMakinesi.cs`)
+- [x] Sınıfı ayrı bir dosyaya taşımak (`HesapMakinesi.cs`)
