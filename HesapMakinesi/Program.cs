@@ -1,16 +1,6 @@
-﻿List<string> gecmis = new List<string>();
-
-if (File.Exists("gecmis.txt"))
-{
-    string[] eskiHesaplar = File.ReadAllLines("gecmis.txt");
-    foreach (string hesap in eskiHesaplar)
-    {
-        gecmis.Add(hesap);
-    }
-}
-
-
+﻿
 HesapMakinesi makine = new HesapMakinesi();
+makine.GecmisiYukle();
 bool devam = true;
 while (devam)
 {
@@ -39,15 +29,14 @@ while (devam)
     if (hatavar == false)
     {
         Console.WriteLine("Sonuç: " + sonuc);
-        gecmis.Add(birincisayi + " " + islem + " " + ikincisayi + " = " + sonuc);
-        File.AppendAllText("gecmis.txt", birincisayi + " " + islem + " " + ikincisayi + " = " + sonuc + "\n");
+        makine.GecmiseEkle(birincisayi + " " + islem + " " + ikincisayi + " = " + sonuc);
     }
 
     devam = DevamMi();
 }
 
 Console.WriteLine("Hesap Geçmişi");
-foreach (string hesap in gecmis)
+foreach (string hesap in makine.Gecmis)
 {
     Console.WriteLine(hesap);
 }
@@ -123,7 +112,30 @@ bool DevamMi()
 
 class HesapMakinesi
 {
-public double Hesapla(double birincisayi, double ikincisayi, string islem)
+    public List<string> Gecmis = new List<string>();
+
+
+    public void GecmisiYukle()
+    {
+        if (File.Exists("gecmis.txt"))
+        {
+            string[] eskiHesaplar = File.ReadAllLines("gecmis.txt");
+            foreach (string hesap in eskiHesaplar)
+            {
+                Gecmis.Add(hesap);
+            }
+        }
+    }
+
+
+
+    public void GecmiseEkle(string hesap)
+    {
+        Gecmis.Add(hesap);
+        File.AppendAllText("gecmis.txt", hesap + "\n");
+    }
+
+    public double Hesapla(double birincisayi, double ikincisayi, string islem)
     {
         double sonuc = 0;
         switch (islem)
