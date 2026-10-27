@@ -139,6 +139,14 @@ Görüşmek üzere!
 - Metodu nesne üzerinden çağırdım: `makine.Hesapla(...)` (`gecmis.Add(...)` ile aynı mantık)
 - İstenmeyen girişlerle de (harf, geçersiz işlem) ekstra testler yaptım
 
+**Versiyon 12**
+- Hesap geçmişini (`Gecmis` listesi) sınıfın **özelliği** yaptım; dosyadan okuma (`GecmisiYukle`) ve kaydetme (`GecmiseEkle`) işlerini de sınıfın metotlarına taşıdım. Ana program artık sadece `makine.` ile sınıfa ne yapacağını söylüyor
+- Özellik ile metodu karıştırdım (listeyi `void` ile metot gibi yazdım) → yapay zekâ farkı tablo ile anlattı
+- `GecmiseEkle` içinde metodu kendi kendini çağıracak şekilde yazdım (`GecmiseEkle(hesap)`) → yapay zekâ fark ettirdi, `Gecmis.Add(hesap)` olarak düzelttim
+- Metot adında Türkçe karakter (`ü`) kullandım, `File.AppendAllText` yazımında hata yaptım → yapay zekâ gösterdi
+- Bu versiyonda yapay zekâ çok daha fazla yönlendirme yaptı: her adımda neyi silip neyi ekleyeceğimi madde madde anlattı. Yapay zekâ bir ara kodun tamamını da verdi ama anlamadığım kodu kullanmak istemediğim için yapıştırmadım; adım adım kendim yazdım
+- OOP benim için en zor konulardan biri oldu, tekrar ederek oturtmaya devam edeceğim
+
 ## Sonraki adımlar
 - [x] İşlem seçimi (+, -, *, /)
 - [x] Sıfıra bölme kontrolü
@@ -155,6 +163,5 @@ Görüşmek üzere!
 - [x] Yeni işlemler: kalan (%) ve üs alma (^)
 - [x] Hesap geçmişini dosyaya kaydetmek
 - [x] Hesaplama kodlarını bir sınıfa taşımak (OOP)
-- [ ] Hesap geçmişini ve dosya işlemlerini de sınıfın içine taşımak
+- [x] Hesap geçmişini ve dosya işlemlerini de sınıfın içine taşımak
 - [ ] Sınıfı ayrı bir dosyaya taşımak (`HesapMakinesi.cs`)
-- [ ] Hesap geçmişini bir veritabanına (SQL) kaydetmek
