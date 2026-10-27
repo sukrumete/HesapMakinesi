@@ -19,8 +19,9 @@
 
     public void GecmiseEkle(string hesap)
     {
-        Gecmis.Add(hesap);
-        File.AppendAllText("gecmis.txt", hesap + "\n");
+        string satir = DateTime.Now.ToString("dd.MM.yyyy HH:mm") + " | " + hesap;
+        Gecmis.Add(satir);
+        File.AppendAllText("gecmis.txt", satir + "\n");
     }
 
     public void GecmisiTemizle()
