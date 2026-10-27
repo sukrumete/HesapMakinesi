@@ -159,6 +159,7 @@ Görüşmek üzere!
 - Aynı E/H sorusunu iki farklı yerde kullanabilmek için `DevamMi` metoduna parametre ekledim: `DevamMi(string soru)`. Bu fikri yapay zekâ önerdi, `SayiAl(string mesaj)` ile aynı mantık olduğunu görünce anladım
 - `Console.ReadLine()` satırlarındaki null uyarılarını (`CS8600`) `?? ""` ile giderdim. `??` operatörünü yapay zekâdan öğrendim
 - Boş geçmişi test etmek için dosyanın adını geçici olarak değiştirdim, silme özelliğini de "evet" ve "hayır" cevaplarıyla ayrı ayrı test ettim
+- Geçmişteki her hesabın başına `DateTime.Now.ToString("dd.MM.yyyy HH:mm")` ile tarih ve saat ekledim. Yapay zekâ `DateTime` ve biçim harflerini (`dd`, `MM`, `HH`...) anlattı; satırı kendim yazdım. Değişikliği sadece sınıftaki `GecmiseEkle` metodunda yaptım.
 
 ## Sonraki adımlar
 - [x] İşlem seçimi (+, -, *, /)
