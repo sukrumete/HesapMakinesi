@@ -23,6 +23,7 @@ while (devam)
     else
     {
         sonuc = makine.Hesapla(birincisayi, ikincisayi, islem);
+        sonuc = Math.Round(sonuc, 2);
     }
 
 
